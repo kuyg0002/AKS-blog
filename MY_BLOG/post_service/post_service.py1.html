@@ -1,0 +1,7 @@
+<!DOCTYPE html>
+<html><head></head><body style="color: rgb(32, 33, 34); font-family: verdana, sans-serif; font-size: 12px;"><p><code># post_service.py</code></p>
+<p><code>from flask import Flask, jsonify</code><br><code>import requests</code></p>
+<p><code>app = Flask(__name__)</code></p>
+<p><code>@app.route('/post/&lt;id&gt;')</code><br><code>def post(id):</code><br><code>&nbsp; &nbsp; posts = {</code><br><code>&nbsp; &nbsp; &nbsp; &nbsp; '1': {'user_id': '1', 'post': 'Hello, world!'},</code><br><code>&nbsp; &nbsp; &nbsp; &nbsp; '2': {'user_id': '2', 'post': 'My first blog post'}</code><br><code>&nbsp; &nbsp; }</code><br><code>&nbsp; &nbsp; post_info = posts.get(id, {})</code><br><code>&nbsp; &nbsp;&nbsp;</code><br><code>&nbsp; &nbsp; # Get user info from User Service</code><br><code>&nbsp; &nbsp; if post_info:</code><br><code>&nbsp; &nbsp; &nbsp; &nbsp; response = requests.get(f'<a href="http://localhost:5000/user/">http://localhost:5000/user/</a>{post_info["user_id"]}')</code><br><code>&nbsp; &nbsp; &nbsp; &nbsp; if response.status_code == 200:</code><br><code>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; post_info['user'] = response.json()</code></p>
+<p><code>&nbsp; &nbsp; return jsonify(post_info)</code></p>
+<p><code>if __name__ == '__main__':</code><br><code>&nbsp; &nbsp; app.run(port=5001)</code></p></body></html>

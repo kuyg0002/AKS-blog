@@ -1,0 +1,6 @@
+<!DOCTYPE html>
+<html><head></head><body style="color: rgb(32, 33, 34); font-family: verdana, sans-serif; font-size: 12px;"><p><code># user_service.py</code></p>
+<p><code>from flask import Flask, jsonify</code></p>
+<p><code>app = Flask(__name__)</code></p>
+<p><code>@app.route('/user/&lt;id&gt;')</code><br><code>def user(id):</code><br><code>&nbsp; &nbsp; users = {</code><br><code>&nbsp; &nbsp; &nbsp; &nbsp; '1': {'name': 'Alice', 'email': 'alice@example.com'},</code><br><code>&nbsp; &nbsp; &nbsp; &nbsp; '2': {'name': 'Bob', 'email': 'bob@example.com'}</code><br><code>&nbsp; &nbsp; }</code><br><code>&nbsp; &nbsp; user_info = users.get(id, {})</code><br><code>&nbsp; &nbsp; return jsonify(user_info)</code></p>
+<p><code>if __name__ == '__main__':</code><br><code>&nbsp; &nbsp; app.run(port=5000)</code></p></body></html>
